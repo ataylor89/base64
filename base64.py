@@ -24,15 +24,12 @@ def encode(byte_data):
     return encoded_text
 
 def decode(text):
-    bytearr = bytearray()
-    for i in range(0, len(text), 4):
-        sextets = []
-        for j in range(i, i+4):
-            ch = text[j]
-            if ch in decoding_table:
-                sextets.append(decoding_table[ch])
-        bytearr += from_sextets(sextets)
-    return bytearr        
+    sextets = []
+    for ch in text:
+        if ch in decoding_table:
+            sextets.append(decoding_table[ch])
+    byte_data = from_sextets(sextets)
+    return byte_data
 
 def to_sextets(byte_data):
     bit_str = ''.join(f"{byte:08b}" for byte in byte_data)        

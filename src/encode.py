@@ -12,7 +12,7 @@ def encode(byte_data):
     return encoded_text
 
 def main():
-    argparser = argparse.ArgumentParser(prog='base64.py', description='Encode text using base64')
+    argparser = argparse.ArgumentParser(prog='encode.py', description='Encode text using base64')
     group = argparser.add_mutually_exclusive_group(required=True)
     group.add_argument('message', type=str, nargs='?')
     group.add_argument('-i', '--inputfile', type=str)

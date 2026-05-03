@@ -1,16 +1,13 @@
 from encode import encode
 from unittest import TestCase
-import csv
+import base64
 
 class TestEncode(TestCase):
 
     def test_encode(self):
-        with open('tests/test_data/encoding_data.txt', 'r') as csvfile:
-            csvreader = csv.reader(csvfile)
-            for row in csvreader:
-                if not row:
-                    continue
-                input = row[0].strip()
-                expected = row[1].strip()
-                output = encode(input.encode('utf-8'))
-                assert output == expected
+        with open('tests/test_data/messages.txt', 'r') as file:
+            for message in file:
+                message_bytes = message.encode('utf-8')
+                std_encoding = base64.b64encode(message_bytes).decode('utf-8')
+                my_encoding = encode(message_bytes)
+                assert std_encoding == my_encoding
